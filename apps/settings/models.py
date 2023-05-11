@@ -3,143 +3,99 @@ from django.db import models
 # Create your models here.
 class Setting(models.Model):
     title = models.CharField(
-        max_length=230,
-        verbose_name="Название сайта"
+        max_length=255,
+        verbose_name="Название"
     )
-    description = models.TextField(
-        verbose_name="Описание сайта"
+    descriptions =models.TextField(
+        verbose_name="Описание"
     )
     logo = models.ImageField(
-        upload_to="logo_image/",
-        verbose_name="Логотип сайта"    
+        upload_to="logo",
+        verbose_name="Логотип сайта"
     )
     phone = models.CharField(
-        max_length=100,
-        verbose_name="Номер телефона"
-    )
-    banner = models.ImageField(
-        upload_to="banner_image/",
-        verbose_name="Логотип сайта"  
-     
+        max_length=255,
+        verbose_name="Тел.номер"
     )
     email = models.EmailField(
         verbose_name="Почта"
     )
-    adress = models.CharField(
+    locate = models.CharField(
         max_length=255,
         verbose_name="Адрес"
     )
-
-
+    facebook = models.URLField(
+        verbose_name="Ссылка на Facebook"
+    )
+    instagram = models.URLField(
+        verbose_name="Ссылка на Instagram"
+    )
+    youtube = models.URLField(
+        verbose_name="Ссылка на Youtube"
+    )
+    
     def __str__(self):
         return self.title
     
     class Meta:
-        verbose_name = "Настройки сайт"
-        verbose_name_plural = "Настройка сата" 
+        verbose_name = "Настройки"
+        verbose_name_plural = "Настройка"
+        
+class About(models.Model):
+    image = models.ImageField(
+        upload_to="about_image",
+        verbose_name="Фотография"
+    )
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Название"
+    )
+    decriptions = models.TextField(
+        verbose_name="Описание"
+    )
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "О нас"
+        verbose_name_plural = "О нас"
 
-class BlogDetail(models.Model):
+class Slide(models.Model):
+    image = models.ImageField(
+        upload_to="slide_image",
+        verbose_name="Фотография"
+    )
     title = models.CharField(
         max_length=255,
         verbose_name="Название"
     )
     descriptions = models.TextField(
-        verbose_name="описание"
+        verbose_name="Описание"
     )
-    # image = models.ImageField(
-    #     upload_to="about_image/",
-    #     verbose_name="Фотография"
-#     )
-    
+
     def __str__(self):
         return self.title
     
     class Meta:
-        verbose_name = "Blog_detail"
-        verbose_name_plural  = "Blog_detaili"
+        verbose_name = "Слайды"
+        verbose_name_plural = "Слайд"
 
-class Blog(models.Model):
+class Course(models.Model):
+    image = models.ImageField(
+        upload_to="blog_image",
+            verbose_name="Фотография"
+    )
     title = models.CharField(
         max_length=255,
-        verbose_name="Вход",
+        verbose_name="Название"
     )
-
     descriptions = models.TextField(
-        verbose_name="описание"
+        verbose_name="Описание"
     )
-    image = models.ImageField(
-        upload_to="academics_image/",
-        verbose_name="Фотография"
-    )
-    
     def __str__(self):
         return self.title
     
     class Meta:
-        verbose_name = "Blog"
-        verbose_name_plural = "Blog" 
-    
-
-class BooksDetail(models.Model):
-    title = models.CharField(
-        max_length=255,
-        verbose_name="Вход",
-    )
-
-    descriptions = models.TextField(
-        verbose_name="описание"
-    )
-    image = models.ImageField(
-        upload_to="blog-post_image/",
-        verbose_name="Фотография"
-    )
-    
-    def __str__(self):
-        return self.title
-    
-
-class Books(models.Model):
-    title = models.CharField(
-        max_length=255,
-        verbose_name="Вход",
-    )
-
-    descriptions = models.TextField(
-        verbose_name="описание"
-    )
-    image = models.ImageField(
-        upload_to="research_image/",
-        verbose_name="Фотография"
-    )
-    def __str__(self):
-        return self.title   
-    
-    class Meta:
-        verbose_name = "Книга"
-        verbose_name_plural = "Книги" 
-    
-class Image(models.Model):
-    category_name = models.CharField(
-        max_length=50
-    )
-
-    image = models.ImageField(
-        upload_to="imagee/",
-        verbose_name="Фотография"
-    )
-
-    def __str__(self):
-        return self.title   
-    
-
-class Contact(models.Model):
-    number = models.CharField(
-        max_length=50
-    )
-    email = models.EmailField(
-    verbose_name="Email"
-    )
-    def __str__(self):
-        return self.title  
-    
-    
+        verbose_name = "Курс"
+        verbose_name_plural = "Курсы"
